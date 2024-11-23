@@ -31,9 +31,14 @@ function showHistory() {
   } else {
     scores.slice(0, 10).forEach((entry, index) => {
       const listItem = document.createElement("li");
-      listItem.textContent = `${index + 1}. ${entry.name}: ${
-        entry.score
-      } puntos`;
+      const nameSpan = document.createElement("span");
+      nameSpan.textContent = `${index + 1}. ${entry.name}`;
+
+      const scoreSpan = document.createElement("span");
+      scoreSpan.textContent = `${entry.score} puntos`;
+
+      listItem.appendChild(nameSpan);
+      listItem.appendChild(scoreSpan);
       historyList.appendChild(listItem);
     });
   }

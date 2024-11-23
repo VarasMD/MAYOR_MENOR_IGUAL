@@ -197,10 +197,7 @@ input[type="text"] {
 }
 
 #history-screen {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+    width: 400px;
     padding: 40px 20px;
     gap: 15px;
     position: fixed;
@@ -218,6 +215,7 @@ input[type="text"] {
 
 .history-header {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
@@ -259,9 +257,26 @@ input[type="text"] {
     list-style: none;
     padding: 0;
     margin: 0;
-    max-height: 200px;
+    max-height: 460px;
     overflow-y: auto;
     text-align: left;
+}
+
+#history-list li {
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+    font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: #000000;
+}
+
+#history-list li:nth-child(odd) {
+    background-color: #ffffff;
 }
 
 
