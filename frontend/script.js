@@ -29,12 +29,11 @@ function showHistory() {
   if (scores.length === 0) {
     historyList.innerHTML = "<li>No hay resultados registrados.</li>";
   } else {
-    scores.forEach((entry, index) => {
+    scores.slice(0, 10).forEach((entry, index) => {
       const listItem = document.createElement("li");
       listItem.textContent = `${index + 1}. ${entry.name}: ${
         entry.score
       } puntos`;
-      console.log(historyList);
       historyList.appendChild(listItem);
     });
   }
