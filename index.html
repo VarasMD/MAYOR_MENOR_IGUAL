@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mayor, Menor o Igual</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-mode">
+    <button class="theme-toggle" onclick="toggleTheme()">🌞</button>
+    <div class="container">
+        <h1>Mayor, Menor o Igual</h1>
+        <div id="welcome-screen">
+            <input type="text" id="player-name" placeholder="Ingresa tu nombre" required>
+            <button onclick="startGame()">Iniciar Juego</button>
+        </div>
+        <div id="game-screen" class="hidden">
+            <p id="player-display"></p>
+            <p>Carta Actual <span id="current-card"></span></p>
+            <div class="content-card">
+                <div class="card">
+                    <div class="card-value"></div>
+                    <div class="card-suit"></div>
+                    <div class="card-value rotated"></div>
+                </div>
+            </div>
+            <div class="buttons">
+                <button onclick="guess('mayor')">Mayor</button>
+                <button onclick="guess('menor')">Menor</button>
+                <button onclick="guess('igual')">Igual</button>
+            </div>
+            <p>Aciertos: <span id="score">0</span></p>
+        </div>
+        <div id="game-over-screen" class="hidden">
+            <p>¡Juego terminado!</p>
+            <p>Aciertos: <span id="final-score"></span></p>
+            <div class="content-card">
+                <div>
+                    <p>Siguiente</p>
+                    <div class="card-next">
+                        <div class="card-next-value"></div>
+                        <div class="card-next-suit"></div>
+                        <div class="card-next-value rotated"></div>
+                    </div>
+                </div>
+                <div>
+                    <p>Anterior</p>
+                    <div class="card-last">
+                        <div class="card-last-value"></div>
+                        <div class="card-last-suit"></div>
+                        <div class="card-last-value rotated"></div>
+                    </div>
+                </div>
+            </div>
+            <button onclick="playAgain()">Jugar de nuevo</button>
+            <button onclick="resetGame()">Finalizar</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
