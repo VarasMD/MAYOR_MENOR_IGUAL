@@ -7,7 +7,10 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="light-mode">
-    <button class="theme-toggle" onclick="toggleTheme()">🌞</button>
+    <div>
+        <button class="theme-toggle" onclick="toggleTheme()">🌞</button>
+        <button class="history" onclick="showHistory()">Ver Historial</button>
+    </div>
     <div class="container">
         <h1>Mayor, Menor o Igual</h1>
         <div id="welcome-screen">
@@ -54,6 +57,12 @@
             </div>
             <button onclick="playAgain()">Jugar de nuevo</button>
             <button onclick="resetGame()">Finalizar</button>
+        </div>
+
+        <div id="history-screen" class="hidden">
+            <h2>Historial de Resultados</h2>
+            <ul id="history-list"></ul>
+            <button onclick="closeHistory()">Cerrar</button>
         </div>
     </div>
     <script src="script.js"></script>

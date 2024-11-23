@@ -20,6 +20,32 @@ function shuffleDeck() {
   deck.sort(() => Math.random() - 0.5);
 }
 
+function showHistory() {
+  const scores = JSON.parse(localStorage.getItem("scores")) || [];
+  console.log(scores);
+  const historyList = document.getElementById("history-list");
+  historyList.innerHTML = "";
+
+  if (scores.length === 0) {
+    historyList.innerHTML = "<li>No hay resultados registrados.</li>";
+  } else {
+    scores.forEach((entry, index) => {
+      const listItem = document.createElement("li");
+      listItem.textContent = `${index + 1}. ${entry.name}: ${
+        entry.score
+      } puntos`;
+      console.log(historyList);
+      historyList.appendChild(listItem);
+    });
+  }
+
+  document.getElementById("history-screen").classList.remove("hidden");
+}
+
+function closeHistory() {
+  document.getElementById("history-screen").classList.add("hidden");
+}
+
 function startGame() {
   playerName = document.getElementById("player-name").value;
   if (playerName.trim() === "") {
@@ -74,10 +100,20 @@ function compareCards(card1, card2) {
   }
 }
 
+function saveScore() {
+  const scores = JSON.parse(localStorage.getItem("scores")) || [];
+  scores.push({ name: playerName, score });
+
+  scores.sort((a, b) => b.score - a.score);
+  localStorage.setItem("scores", JSON.stringify(scores));
+}
+
 function endGame() {
   document.getElementById("game-screen").classList.add("hidden");
   document.getElementById("game-over-screen").classList.remove("hidden");
   document.getElementById("final-score").textContent = score;
+
+  saveScore();
 }
 
 function winGame() {}

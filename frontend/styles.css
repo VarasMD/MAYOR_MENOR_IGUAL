@@ -107,7 +107,21 @@ input[type="text"] {
     width: 50px;
 }
 
-.theme-toggle:hover {
+.history {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    color: var(--button-background);
+    padding: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    font-size: 18px;
+    width: 150px;
+    border: none;
+}
+
+.theme-toggle:hover, .history:hover {
     background-color: var(--button-background);
     color: var(--button-color);
 }
@@ -180,5 +194,28 @@ input[type="text"] {
 
 .card-suit.copa, .card-next-suit.copa, .card-last-suit.copa{
     color: #FF0000;
+}
+
+#history-screen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--container-bg);
+    border: 2px solid var(--button-background);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0px 4px 20px var(--container-shadow);
+    text-align: center;
+    max-width: 300px;
+}
+
+#history-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 200px;
+    overflow-y: auto;
+    text-align: left;
 }
 
