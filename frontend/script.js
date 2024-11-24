@@ -20,6 +20,55 @@ function shuffleDeck() {
   deck.sort(() => Math.random() - 0.5);
 }
 
+function handleRegister(event) {
+  event.preventDefault();
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  try {
+    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const user = users.find((user) => user.username === username);
+
+    if (user) {
+      alert("El usuario ya existe.");
+      return;
+    }
+
+    users.push({ username, password });
+    localStorage.setItem("users", JSON.stringify(users));
+    alert("Usuario registrado exitosamente.");
+    showLogin();
+  } catch (error) {
+    console.error(error);
+    alert("Ocurrió un error al registrar el usuario.");
+  }
+}
+
+function showLogin() {
+  document.getElementById("login").classList.remove("hidden");
+  document.getElementById("welcome-screen").classList.add("hidden");
+}
+
+function handleLogin(event) {
+  event.preventDefault();
+
+  const username = document.getElementById("login-username").value;
+  const password = document.getElementById("login-password").value;
+
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+  const user = users.find((user) => user.username === username);
+
+  if (user) {
+    if (user.password === password) {
+      document.getElementById("login").classList.add("hidden");
+      startGame();
+    } else {
+      alert("Contraseña incorrecta.");
+    }
+  }
+}
+
 function showHistory() {
   const scores = JSON.parse(localStorage.getItem("scores")) || [];
   console.log(scores);
@@ -51,7 +100,7 @@ function closeHistory() {
 }
 
 function startGame() {
-  playerName = document.getElementById("player-name").value;
+  playerName = document.getElementById("login-username").value;
   if (playerName.trim() === "") {
     alert("Por favor, ingresa un nombre.");
     return;
@@ -106,7 +155,15 @@ function compareCards(card1, card2) {
 
 function saveScore() {
   const scores = JSON.parse(localStorage.getItem("scores")) || [];
-  scores.push({ name: playerName, score });
+  const existingPlayer = scores.find((entry) => entry.name === playerName);
+
+  if (existingPlayer) {
+    if (score > existingPlayer.score) {
+      existingPlayer.score = score;
+    }
+  } else {
+    scores.push({ name: playerName, score });
+  }
 
   scores.sort((a, b) => b.score - a.score);
   localStorage.setItem("scores", JSON.stringify(scores));
@@ -125,7 +182,10 @@ function winGame() {}
 function resetGame() {
   document.getElementById("game-over-screen").classList.add("hidden");
   document.getElementById("welcome-screen").classList.remove("hidden");
-  document.getElementById("player-name").value = "";
+  document.getElementById("username").value = "";
+  document.getElementById("password").value = "";
+  document.getElementById("login-username").value = "";
+  document.getElementById("login-password").value = "";
 
   const cardNextSuitEspada = document.querySelector(".card-next .Espada");
   const cardNextSuitOro = document.querySelector(".card-next .Oro");

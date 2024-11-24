@@ -196,8 +196,10 @@ input[type="text"] {
     color: #FF0000;
 }
 
+/* modal */
 #history-screen {
     width: 400px;
+    height: 500px;
     padding: 40px 20px;
     gap: 15px;
     position: fixed;
@@ -279,4 +281,42 @@ input[type="text"] {
     background-color: #ffffff;
 }
 
+/* Auth */
+#register-screen, #auth-screen {
+    transform: translate(-50%, -50%);
+    background: var(--container-bg);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    width: 300px;
+}
 
+#register-screen.hidden, #auth-screen.hidden {
+    display: none;
+}
+
+#register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#password, #login-password {
+    padding: 10px;
+    border: 2px solid var(--button-background);
+    border-radius: 8px;
+    width: calc(100% - 24px);
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+#register-form button, #login-form button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    background-color: var(--button-background);
+    color: white;
+    cursor: pointer;
+}

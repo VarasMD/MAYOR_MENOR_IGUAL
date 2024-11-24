@@ -13,9 +13,23 @@
     </div>
     <div class="container">
         <h1>Mayor, Menor o Igual</h1>
-        <div id="welcome-screen">
-            <input type="text" id="player-name" placeholder="Ingresa tu nombre" required>
-            <button onclick="startGame()">Iniciar Juego</button>
+        <div id="welcome-screen" >
+            <form id="register-form" onsubmit="handleRegister(event)">
+                <h2>Registro</h2>
+                <input type="text" id="username" placeholder="Usuario" required>
+                <input type="password" id="password" placeholder="Contraseña" required>
+                <button type="submit">Registrarse</button>
+                <p>¿Ya tienes una cuenta? <button type="button" onclick="showLogin()">Inicia Sesión</button></p>
+            </form>
+        </div>
+
+        <div id="login" class="hidden" >
+            <form id="register-form" onsubmit="handleLogin(event)">
+                <h2>Inicia sesión</h2>
+                <input type="text" id="login-username" placeholder="Usuario" required>
+                <input type="password" id="login-password" placeholder="Contraseña" required>
+                <button type="submit">Iniciar Juego</button>
+            </form>
         </div>
         <div id="game-screen" class="hidden">
             <p id="player-display"></p>
